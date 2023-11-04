@@ -1,5 +1,6 @@
 import psycopg2
 from configparser import ConfigParser
+# from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
 def config(filename=None,section=None):
@@ -37,3 +38,46 @@ def connect (conn, cur): # cursor execute the query
     return conn, cur, local_connection
 
 connect(conn=None , cur=None)
+
+
+#creating tables: # its a good idea to have classes and define our methods there.
+
+# def create_table():
+#     conn , cur, local_connection = connect(conn=None , cur=None)
+#     # istead of line 47, we can also use the below code for our connection to be autocommit
+#     # conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+#     query = """CREATE TABLE IF NOT EXISTS ticket(ticket_id SERIAL PRIMARY KEY, credit INTEGER, expire_date TIMESTAMP)"""
+#     cur.execute(query)
+#     conn.commit() # if we dont commit, the table will not be created, because postgres is on readingcommit isolation level
+
+# def create_table():
+#     conn , cur, local_connection = connect(conn=None , cur=None)
+#     query = """CREATE TABLE IF NOT EXISTS user_ticket(
+#         user_ticket_id SERIAL PRIMARY KEY,
+#         user_id INTEGER REFERENCES travel_user(user_id),
+#         ticket_id INTEGER REFERENCES ticket(ticket_id)
+#     );"""
+#     cur.execute(query)
+#     conn.commit()
+
+# def create_table():
+#     conn , cur, local_connection = connect(conn=None , cur=None)
+#     query = """CREATE TABLE IF NOT EXISTS user_travel(
+#         user_travel_id SERIAL PRIMARY KEY,
+#         user_id INTEGER REFERENCES travel_user(user_id),
+#         travel_id INTEGER REFERENCES travel(travel_id)
+#     );"""
+#     cur.execute(query)
+#     conn.commit()
+    
+# def create_table():
+#     conn , cur, local_connection = connect(conn=None , cur=None)
+#     query = """CREATE TABLE IF NOT EXISTS bank(
+#         bank_id SERIAL PRIMARY KEY,
+#         balance INTEGER,
+#         user_id INTEGER REFERENCES travel_user(user_id)
+#     );"""
+#     cur.execute(query)
+#     conn.commit()
+    
+# create_table()
